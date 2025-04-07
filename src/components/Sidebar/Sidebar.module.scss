@@ -1,0 +1,32 @@
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #ecf0f1;
+  border-right: 1px solid #dee2e6;
+  box-shadow: 0 2 4 rgba(0, 0, 0, 0.075);
+
+  button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    box-shadow: 0 2 4 rgba(0, 0, 0, 0.075);
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3.2 rgba(0, 123, 255, 0.25);
+    }
+  }
+}

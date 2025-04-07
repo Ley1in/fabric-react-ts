@@ -1,0 +1,88 @@
+.topbar {
+  background-color: #ecf0f1;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
+
+  .topbarLeft {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    margin-right: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .topbarCenter {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type='text'] {
+      padding: 8px 12px;
+      margin-right: 12px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+      &:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+      }
+    }
+
+    .fileInput {
+      display: none;
+    }
+
+    .uploadButton {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin-right: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.15s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
+
+      &:hover {
+        background-color: #0056b3;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+      }
+    }
+  }
+
+  .topbarRight {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
