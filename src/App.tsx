@@ -21,17 +21,31 @@ function App() {
     canvasRef.current.on('mouse:wheel', (opt) => {
       if (!canvasRef.current) return;
       const delta = opt.e.deltaY;
-      let zoom = canvasRef.current.getZoom();
-      zoom *= 0.999 ** delta;
-      if (zoom > 20) zoom = 20;
-      if (zoom < 0.01) zoom = 0.01;
-      canvasRef.current.setZoom(zoom);
+      const zoom = canvasRef.current.getZoom() * 0.999 ** delta;
+      const newZoom = Math.min(20, Math.max(0.01, zoom));
+      const pointer = canvasRef.current.getPointer(opt.e);
+      if (!pointer) return;
+
+      canvasRef.current.zoomToPoint(
+        new fabric.Point(pointer.x, pointer.y),
+        newZoom
+      );
+
       opt.e.preventDefault();
       opt.e.stopPropagation();
     });
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Delete') {
+        deleteObject();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
     return () => {
       canvasRef.current?.dispose();
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -112,6 +126,16 @@ function App() {
     }
   };
 
+  const deleteObject = () => {
+    if (canvasRef.current) {
+      const activeObject = canvasRef.current.getActiveObject();
+      if (activeObject) {
+        canvasRef.current.remove(activeObject);
+        canvasRef.current.requestRenderAll();
+      }
+    }
+  };
+
   const handleZoom = (zoomType: string) => {
     if (!canvasRef.current) return;
 
@@ -121,11 +145,8 @@ function App() {
     zoomValue = zoomType === 'zoomIn' ? zoomValue + delta : zoomValue - delta;
     zoomValue = Math.max(0.1, zoomValue);
 
-    const center = canvasRef.current.getCenter();
-    canvasRef.current.zoomToPoint(
-      new fabric.Point(center.left, center.top),
-      zoomValue
-    );
+    canvasRef.current.setZoom(zoomValue);
+    canvasRef.current.requestRenderAll();
   };
 
   const handleClearCanvas = () => {
