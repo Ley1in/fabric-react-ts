@@ -1,88 +1,144 @@
 .topbar {
-  background-color: #ecf0f1;
-  padding: 16px 32px;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 1rem 0.75rem;
+  }
+}
+
+.container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #dee2e6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
 
-  .topbarLeft {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
+}
+
+.saveButton {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.menuButton {
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #4b5563;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  &:hover {
+    background-color: #f3f4f6;
+    color: #1f2937;
   }
 
-  button {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    margin-right: 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.15s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
 
-    &:hover {
-      background-color: #0056b3;
-    }
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+}
+
+.input {
+  flex: 1;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: all 0.15s ease-in-out;
+  min-width: 200px;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
   }
 
-  .topbarCenter {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 0.9375rem;
+    padding: 0.75rem;
+  }
+}
 
-    input[type='text'] {
-      padding: 8px 12px;
-      margin-right: 12px;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.fileInput {
+  display: none;
+}
 
-      &:focus {
-        border-color: #80bdff;
-        outline: 0;
-        box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
-      }
-    }
+.uploadButton {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 500;
 
-    .fileInput {
-      display: none;
-    }
-
-    .uploadButton {
-      background-color: #007bff;
-      border: none;
-      color: white;
-      padding: 12px 20px;
-      margin-right: 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.15s ease-in-out;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075);
-
-      &:hover {
-        background-color: #0056b3;
-      }
-
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
-      }
-    }
+  &:hover {
+    background-color: #2563eb;
   }
 
-  .topbarRight {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 0.9375rem;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+
+    button {
+      margin: 0 auto;
+      display: block;
+      padding: 0.75rem;
+      font-size: 0.9375rem;
+    }
   }
 }

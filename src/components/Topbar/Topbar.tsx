@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Topbar.module.scss';
+import Button from '../Button/Button';
 
 interface TopbarProps {
   onSave: () => void;
@@ -7,6 +8,7 @@ interface TopbarProps {
   onFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onLoad: (svg: string) => void;
   onZoom: (zoomType: string) => void;
+  onToggleSidebar: () => void;
 }
 
 const Topbar: React.FC<TopbarProps> = ({
@@ -14,6 +16,7 @@ const Topbar: React.FC<TopbarProps> = ({
   onClearCanvas,
   onFileChange,
   onLoad,
+  onToggleSidebar,
 }) => {
   const [svgInputLocal, setSvgInputLocal] = useState('');
 
@@ -28,36 +31,40 @@ const Topbar: React.FC<TopbarProps> = ({
 
   return (
     <div className={styles.topbar}>
-      <div className={styles.topbarLeft}>
-        <button className={styles.button} onClick={onSave}>
-          Сохранить
-        </button>
-      </div>
+      <div className={styles.container}>
+        <div className={styles.left}>
+          <button onClick={onToggleSidebar} className={styles.menuButton}>
+            ☰
+          </button>
+          <div className={styles.saveButton}>
+            <Button onClick={onSave}>Сохранить</Button>
+          </div>
+        </div>
 
-      <div className={styles.topbarCenter}>
-        <input
-          type="text"
-          value={svgInputLocal}
-          onChange={handleChange}
-          placeholder="SVG Code"
-        />
-        <button onClick={handleLoadClick}>Загрузить</button>
+        <div className={styles.center}>
+          <input
+            type="text"
+            value={svgInputLocal}
+            onChange={handleChange}
+            placeholder="SVG Code"
+            className={styles.input}
+          />
+          <Button onClick={handleLoadClick}>Загрузить</Button>
 
-        <input
-          type="file"
-          id="fileInput"
-          onChange={onFileChange}
-          className={styles.fileInput}
-        />
-        <label htmlFor="fileInput" className={styles.uploadButton}>
-          Вставить изображение / SVG картинку
-        </label>
-      </div>
+          <input
+            type="file"
+            id="fileInput"
+            onChange={onFileChange}
+            className={styles.fileInput}
+          />
+          <label htmlFor="fileInput" className={styles.uploadButton}>
+            Вставить изображение / SVG
+          </label>
+        </div>
 
-      <div className={styles.topbarRight}>
-        <button className={styles.button} onClick={onClearCanvas}>
-          Очистить Canvas
-        </button>
+        <div className={styles.right}>
+          <Button onClick={onClearCanvas}>Очистить Canvas</Button>
+        </div>
       </div>
     </div>
   );
