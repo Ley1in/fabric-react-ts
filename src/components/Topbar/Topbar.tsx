@@ -16,6 +16,7 @@ const Topbar: React.FC<TopbarProps> = ({
   onClearCanvas,
   onFileChange,
   onLoad,
+  onZoom,
   onToggleSidebar,
 }) => {
   const [svgInputLocal, setSvgInputLocal] = useState('');
@@ -29,19 +30,45 @@ const Topbar: React.FC<TopbarProps> = ({
     setSvgInputLocal(e.target.value);
   };
 
+  const Controls = () => (
+    <div className={styles.mainControls}>
+      <div className={styles.saveButton}>
+        <Button onClick={onSave}>Сохранить</Button>
+      </div>
+      <div className={styles.zoomControls}>
+        <button
+          className={styles.zoomButton}
+          onClick={() => onZoom('zoomIn')}
+          aria-label="Zoom In"
+        >
+          ＋
+        </button>
+        <button
+          className={styles.zoomButton}
+          onClick={() => onZoom('zoomOut')}
+          aria-label="Zoom Out"
+        >
+          －
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div className={styles.topbar}>
       <div className={styles.container}>
-        <div className={styles.left}>
+        <div className={styles.mobileTopRow}>
           <button onClick={onToggleSidebar} className={styles.menuButton}>
             ☰
           </button>
-          <div className={styles.saveButton}>
-            <Button onClick={onSave}>Сохранить</Button>
-          </div>
+          <Controls />
         </div>
 
-        <div className={styles.center}>
+        <div className={styles.desktopControls}>
+          <Controls />
+        </div>
+
+        <div className={styles.fileControls}>
           <input
             type="text"
             value={svgInputLocal}
@@ -62,7 +89,7 @@ const Topbar: React.FC<TopbarProps> = ({
           </label>
         </div>
 
-        <div className={styles.right}>
+        <div className={styles.clearButton}>
           <Button onClick={onClearCanvas}>Очистить Canvas</Button>
         </div>
       </div>
